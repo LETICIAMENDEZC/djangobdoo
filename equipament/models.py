@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 class Point(models.Model):
-
     coordx = models.CharField(verbose_name="coordenada X", max_length=10)
     coordy = models.CharField(verbose_name="coordenada Y", max_length=10)
     valormax = models.CharField(verbose_name="valor maximo", max_length=35)
@@ -61,6 +60,7 @@ class Antenna(models.Model):
 
 
 class Routes(models.Model):
+
     name = models.CharField(verbose_name="nombre", max_length=45, unique=True)
     points = models.CharField(verbose_name="numero de puntos", max_length=10)
     date = models.CharField(verbose_name="fecha", max_length=13)
@@ -75,6 +75,7 @@ class Routes(models.Model):
 
 
 class equipment(models.Model):
+    routes = models.ForeignKey(Routes)
     policy = models.CharField(verbose_name="poliza", max_length=30, unique=True)
     purchase = models.CharField(verbose_name="compra", max_length=25)
     datepurch = models.CharField(verbose_name="fecha de compra", max_length=25)
